@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Use State</title>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+        function Counter(props){
+            const {value,index}=props
+            const [count,setCount]=React.useState(value)
+            const inc=()=>setCount(count+1)
+            const dec=()=>setCount(count-1)
+            return(
+                <div>
+                    <h2>Counter:{index}</h2>
+                    <button onClick={dec}>-</button>
+                    <span>{count}</span>
+                    <button onClick={inc}>+</button>
+                    </div>
+            )
+        }
+
+        function ParentCounter(){
+            return(
+                <>
+                <Counter index={1} value={0}/>
+                <Counter index={2} value={5}/>
+                <Counter index={3} value={10}/>
+                </>
+            )
+        }
+        ReactDOM.render(<ParentCounter />,document.getElementById('root'))
+    </script>
+</body>
+</html>
